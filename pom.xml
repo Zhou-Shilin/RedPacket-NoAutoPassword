@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>sandtechnology.redpacket</groupId>
-    <artifactId>RedPacket</artifactId>
-    <version>1.5.7</version>
+    <artifactId>RedPacket Hypiworld Fix</artifactId>
+    <version>1.5.8.9</version>
     <packaging>jar</packaging>
 
     <name>RedPacket</name>
