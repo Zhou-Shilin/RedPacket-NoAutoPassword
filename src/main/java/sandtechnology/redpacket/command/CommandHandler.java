@@ -39,7 +39,7 @@ public class CommandHandler implements TabExecutor {
     }
 
     private boolean checkSessionAndSetState(Player sender, CreateSession.State state) {
-        return checkAndDoSomething(getSessionManager().hasSession(sender) && getSessionManager().getSession(sender).setState(state), emptyFunction, () -> sendSimpleMsg(sender, new ComponentBuilder(ChatColor.GREEN + "创建会话已失效，请点击这里重新创建！").event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/redpacket new")).create()));
+        return checkAndDoSomething(getSessionManager().hasSession(sender) && getSessionManager().getSession(sender).setState(state), emptyFunction, () -> sendSimpleMsg(sender, new ComponentBuilder(ChatColor.GREEN + "创建会话已失效，请点击这里重新创建！").event(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/redpacket new")).create()));
     }
 
     @Override
@@ -96,11 +96,11 @@ public class CommandHandler implements TabExecutor {
                                 if (checkSessionAndSetState(player, CreateSession.State.WaitType)) {
                                     sendSimpleMsg(player, ChatColor.GREEN, "请选择红包类型：");
                                     sendSimpleMsg(player,
-                                            new ComponentBuilder(ChatColor.GREEN + ChatColor.UNDERLINE.toString() + "普通").event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/redpacket set type normal")).event(selectTip)
+                                            new ComponentBuilder(ChatColor.GREEN + ChatColor.UNDERLINE.toString() + "普通").event(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/redpacket set type normal")).event(selectTip)
                                                     .append("  ").reset()
-                                                    .append(ChatColor.GREEN + ChatColor.UNDERLINE.toString() + "口令").event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/redpacket set type password")).underlined(true).event(selectTip)
+                                                    .append(ChatColor.GREEN + ChatColor.UNDERLINE.toString() + "口令").event(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/redpacket set type password")).underlined(true).event(selectTip)
                                                     .append("  ").reset()
-                                                    .append(ChatColor.GREEN + ChatColor.UNDERLINE.toString() + "接龙").event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/redpacket set type jielong")).event(selectTip)
+                                                    .append(ChatColor.GREEN + ChatColor.UNDERLINE.toString() + "接龙").event(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/redpacket set type jielong")).event(selectTip)
                                                     .create());
                                 }
                                 break;
@@ -108,9 +108,9 @@ public class CommandHandler implements TabExecutor {
                                 if (checkSessionAndSetState(player, CreateSession.State.WaitGiveType)) {
                                     sendSimpleMsg(player, ChatColor.GREEN, "请选择给予类型：");
                                     sendSimpleMsg(player,
-                                            new ComponentBuilder(ChatColor.GREEN + ChatColor.UNDERLINE.toString() + "固定").event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/redpacket set givetype fixed")).event(selectTip)
+                                            new ComponentBuilder(ChatColor.GREEN + ChatColor.UNDERLINE.toString() + "固定").event(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/redpacket set givetype fixed")).event(selectTip)
                                                     .append("  ").reset()
-                                                    .append(ChatColor.GREEN + ChatColor.UNDERLINE.toString() + "拼手气").event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/redpacket set givetype luck")).event(selectTip)
+                                                    .append(ChatColor.GREEN + ChatColor.UNDERLINE.toString() + "拼手气").event(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/redpacket set givetype luck")).event(selectTip)
                                                     .create());
 
                                 }
@@ -154,10 +154,10 @@ public class CommandHandler implements TabExecutor {
                                         final ComponentBuilder componentBuilder = new ComponentBuilder(text).color(net.md_5.bungee.api.ChatColor.GREEN);
                                         switch (redPacket.getType()) {
                                             case CommonRedPacket:
-                                                componentBuilder.append(ChatColor.GREEN + ChatColor.UNDERLINE.toString() + "点击这里领取").underlined(true).event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/redpacket get " + redPacket.getUUID().toString()));
+                                                componentBuilder.append(ChatColor.GREEN + ChatColor.UNDERLINE.toString() + "点击这里领取").underlined(true).event(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/redpacket get " + redPacket.getUUID().toString()));
                                                 break;
                                             case PasswordRedPacket:
-                                                componentBuilder.append(ChatColor.GREEN + ChatColor.UNDERLINE.toString() + "点击这里领取").underlined(true).event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, redPacket.getExtraData()));
+                                                // componentBuilder.append(ChatColor.GREEN + ChatColor.UNDERLINE.toString() + "点击这里领取").underlined(true).event(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, redPacket.getExtraData()));
                                                 break;
                                             case JieLongRedPacket:
                                                 componentBuilder.append(ChatColor.GREEN + "下一个成语的音节为 " + ChatColor.UNDERLINE.toString() + IdiomManager.getIdiomPinyin(redPacket.getExtraData()));
