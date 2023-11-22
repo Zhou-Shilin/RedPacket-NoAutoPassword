@@ -554,17 +554,17 @@ public class RedPacket implements Comparator<RedPacket>, Comparable<RedPacket> {
         public BaseComponent[] getInfo(){
             HoverEvent tipsHoverEvent=new HoverEvent(HoverEvent.Action.SHOW_TEXT,new ComponentBuilder("点击此处来修改该项").create());
             return new ComponentBuilder(ChatColor.GOLD + "要创建的红包信息：\n")
-                    .append(ChatColor.GREEN + "红包类型：" + ChatColor.YELLOW + type.getName() + "\n").event(tipsHoverEvent).event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/redpacket query type"))
-                    .append(ChatColor.GREEN + "给予类型：" + ChatColor.YELLOW + givetype.getName() + "\n").event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/redpacket query givetype"))
-                    .append(ChatColor.GREEN + "领取人：" + ChatColor.YELLOW + (givers.isEmpty() ? "所有人" : givers.stream().map(Bukkit::getOfflinePlayer).map(OfflinePlayer::getName).collect(Collectors.joining(","))) + "\n").event(tipsHoverEvent).event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/redpacket query giver"))
-                    .append(ChatColor.GREEN + "金额：" + ChatColor.YELLOW + money + "\n").event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/redpacket query money"))
-                    .append(ChatColor.GREEN + "个数：" + ChatColor.YELLOW + amount + "\n").event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/redpacket query amount"))
-                    .append(ChatColor.GREEN + type.getExtraDataName() + "：" + ChatColor.YELLOW + extraData).event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/redpacket query extradata"))
+                    .append(ChatColor.GREEN + "红包类型：" + ChatColor.YELLOW + type.getName() + "\n").event(tipsHoverEvent).event(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/redpacket query type"))
+                    .append(ChatColor.GREEN + "给予类型：" + ChatColor.YELLOW + givetype.getName() + "\n").event(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/redpacket query givetype"))
+                    .append(ChatColor.GREEN + "领取人：" + ChatColor.YELLOW + (givers.isEmpty() ? "所有人" : givers.stream().map(Bukkit::getOfflinePlayer).map(OfflinePlayer::getName).collect(Collectors.joining(","))) + "\n").event(tipsHoverEvent).event(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/redpacket query giver"))
+                    .append(ChatColor.GREEN + "金额：" + ChatColor.YELLOW + money + "\n").event(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/redpacket query money"))
+                    .append(ChatColor.GREEN + "个数：" + ChatColor.YELLOW + amount + "\n").event(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/redpacket query amount"))
+                    .append(ChatColor.GREEN + type.getExtraDataName() + "：" + ChatColor.YELLOW + extraData).event(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/redpacket query extradata"))
                     .append("   ").reset()
-                    .append(type == RedPacketType.JieLongRedPacket ? ChatColor.GOLD + "[随机成语]" + "\n" : "\n").event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/redpacket set type jielong")).event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("点击以随机成语").create()))
-                    .append(ChatColor.DARK_GREEN + "创建").event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("创建红包").create())).event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/redpacket session create"))
+                    .append(type == RedPacketType.JieLongRedPacket ? ChatColor.GOLD + "[随机成语]" + "\n" : "\n").event(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/redpacket set type jielong")).event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("点击以随机成语").create()))
+                    .append(ChatColor.DARK_GREEN + "创建").event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("创建红包").create())).event(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/redpacket session create"))
                     .append("     ").reset()
-                    .append(ChatColor.RED + "取消").event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("取消创建红包").create())).event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/redpacket session cancel")).create();
+                    .append(ChatColor.RED + "取消").event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("取消创建红包").create())).event(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/redpacket session cancel")).create();
         }
     }
 }
